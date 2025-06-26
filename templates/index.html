@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análisis de Eficiencia Vehicular</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,307 +14,469 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            color: #1e293b;
+            line-height: 1.6;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
-            position: relative;
-            overflow: hidden;
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
-            background-size: 300% 300%;
-            animation: gradient 3s ease infinite;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .header {
+        .header-section {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
         }
 
-        .icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
+        .logo-container {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            color: white;
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            width: 64px;
+            height: 64px;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            color: #2c3e50;
-            font-size: 2rem;
+        .main-title {
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
         }
 
         .subtitle {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
+            font-size: 1.125rem;
+            color: #64748b;
+            font-weight: 400;
         }
 
-        .form-group {
-            margin-bottom: 25px;
+        .form-container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
             position: relative;
         }
 
-        label {
+        .input-label {
             display: block;
-            color: #2c3e50;
+            font-size: 0.875rem;
             font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        input {
+        .input-field {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e1e8ed;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e5e7eb;
             border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
+            font-weight: 500;
+            background: #ffffff;
+            transition: all 0.2s ease;
+            color: #1f2937;
         }
 
-        input:focus {
+        .input-field:focus {
             outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
-        input::placeholder {
-            color: #95a5a6;
+        .input-field::placeholder {
+            color: #9ca3af;
+            font-weight: 400;
         }
 
-        .submit-btn {
+        .input-field:hover {
+            border-color: #d1d5db;
+        }
+
+        .featured-input {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #cbd5e1;
+            position: relative;
+        }
+
+        .featured-input:focus {
+            border-color: #2563eb;
+            background: #ffffff;
+        }
+
+        .featured-label {
+            color: #1e40af;
+            font-weight: 700;
+        }
+
+        .submit-button {
             width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 1.25rem 2rem;
+            background: #1e40af;
+            color: #ffffff;
             border: none;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1.125rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s ease;
+            text-transform: none;
+            letter-spacing: 0.025em;
+            margin-top: 1rem;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .submit-btn:active {
+        .submit-button:hover {
+            background: #1d4ed8;
             transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.3);
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+        .submit-button:active {
+            transform: translateY(0);
         }
 
-        .submit-btn:hover::before {
-            left: 100%;
+        .result-success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 600;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
-                margin: 10px;
-            }
-            
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            h1 {
-                font-size: 1.7rem;
-            }
-            
-            .icon {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
-            }
+        .result-error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 600;
         }
 
         .input-icon {
             position: absolute;
-            right: 15px;
+            right: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: #95a5a6;
-            font-size: 1.2rem;
+            color: #9ca3af;
+            font-size: 1.125rem;
+            pointer-events: none;
         }
 
-        .success-message {
-            background: linear-gradient(135deg, #00b894, #00cec9);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            text-align: center;
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
             font-weight: 600;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
-            animation: slideIn 0.5s ease-out;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f1f5f9;
         }
 
-        .error-message {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
-            animation: slideIn 0.5s ease-out;
+        .info-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .highlight-field {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-        }
-
-        .highlight-field label {
-            color: white;
+        .info-title {
             font-size: 1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
         }
 
-        .highlight-field input {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .info-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            line-height: 1.5;
         }
 
-        .highlight-field input:focus {
-            background: white;
-            border-color: #74b9ff;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .header-section {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 1.5rem 1rem;
+                border-radius: 16px;
+            }
+
+            .main-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Loading State */
+        .submit-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-button:disabled:hover {
+            background: #9ca3af;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Focus States for Accessibility */
+        .submit-button:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .input-field:focus {
+            outline: none;
+        }
+
+        /* Validation States */
+        .input-field.valid {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .input-field.invalid {
+            border-color: #ef4444;
+            background: #fef2f2;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="icon">🚗</div>
-            <h1>Análisis de Eficiencia Vehicular</h1>
-            <p class="subtitle">Ingresa los datos de tu vehículo para obtener el análisis</p>
-        </div>
+    <div class="main-container">
+        <header class="header-section">
+            <div class="logo-container">
+                🚗
+            </div>
+            <h1 class="main-title">Emisiones de CO2 de los vehículos</h1>
+            <p class="subtitle">Sistema profesional de análisis y predicción vehicular</p>
+        </header>
 
-        <form action="/predict" method="post">
-            <div class="form-group highlight-field">
-                <label for="fuel_comb_mpg">Consumo Combinado (MPG)</label>
-                <input type="number" id="fuel_comb_mpg" name="fuel_comb_mpg" placeholder="Ej: 25.5 MPG" required step="0.1" min="0.1">
-                <span class="input-icon">⚡</span>
+        <div class="form-container">
+            <div class="info-card">
+                <h3 class="info-title">¿Cómo funciona?</h3>
+                <p class="info-text">
+                    Ingresa las especificaciones técnicas de tu vehículo y nuestro sistema mostrara las Emisiones de CO2.
+                </p>
             </div>
 
-            <div class="grid">
-                <div class="form-group">
-                    <label for="fuel_city_l100km">Consumo Ciudad (L/100km)</label>
-                    <input type="number" id="fuel_city_l100km" name="fuel_city_l100km" placeholder="Ej: 9.4 L/100km" required step="0.1" min="0.1">
+            <form action="/predict" method="post" id="vehicleForm">
+                <div class="form-section">
+                    <h2 class="section-title">Especificaciones del Vehículo</h2>
+                    
+                    <div class="input-group">
+                        <label for="fuel_comb_mpg" class="input-label featured-label">
+                            Consumo Combinado (MPG)
+                        </label>
+                        <input 
+                            type="number" 
+                            id="fuel_comb_mpg" 
+                            name="fuel_comb_mpg" 
+                            class="input-field featured-input"
+                            placeholder="Ejemplo: 25.5 millas por galón" 
+                            required 
+                            step="0.1" 
+                            min="0.1"
+                        >
+                        <span class="input-icon">⚡</span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="cylinders">Número de Cilindros</label>
-                    <input type="number" id="cylinders" name="cylinders" placeholder="Ej: 4 cilindros" required min="1" max="16">
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="fuel_city_l100km" class="input-label">
+                                Consumo en Ciudad (L/100km)
+                            </label>
+                            <input 
+                                type="number" 
+                                id="fuel_city_l100km" 
+                                name="fuel_city_l100km" 
+                                class="input-field"
+                                placeholder="Ejemplo: 9.4 litros" 
+                                required 
+                                step="0.1" 
+                                min="0.1"
+                            >
+                            <span class="input-icon">🏙️</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="cylinders" class="input-label">
+                                Número de Cilindros
+                            </label>
+                            <input 
+                                type="number" 
+                                id="cylinders" 
+                                name="cylinders" 
+                                class="input-field"
+                                placeholder="Ejemplo: 4 cilindros" 
+                                required 
+                                min="1" 
+                                max="16"
+                            >
+                            <span class="input-icon">⚙️</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="fuel_comb_l100km">Eficiencia Total (L/100km)</label>
-                <input type="number" id="fuel_comb_l100km" name="fuel_comb_l100km" placeholder="Ej: 8.1 L/100km" required step="0.1" min="0.1">
-                <span class="input-icon">📊</span>
-            </div>
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="fuel_comb_l100km" class="input-label">
+                                Eficiencia Total (L/100km)
+                            </label>
+                            <input 
+                                type="number" 
+                                id="fuel_comb_l100km" 
+                                name="fuel_comb_l100km" 
+                                class="input-field"
+                                placeholder="Ejemplo: 8.1 litros" 
+                                required 
+                                step="0.1" 
+                                min="0.1"
+                            >
+                            <span class="input-icon">📊</span>
+                        </div>
 
-            <div class="form-group">
-                <label for="engine_size">Tamaño del Motor (L)</label>
-                <input type="number" id="engine_size" name="engine_size" placeholder="Ej: 2.0 L" required step="0.1" min="0.1">
-                <span class="input-icon">🔧</span>
-            </div>
-
-            <button type="submit" class="submit-btn">
-                Analizar Eficiencia
-            </button>
-        </form>
-
-        <!-- Mostrar resultado -->
-        {% if prediction %}
-            {% if prediction is string and "Error" in prediction %}
-                <div class="error-message">
-                    ❌ {{ prediction }}
+                        <div class="input-group">
+                            <label for="engine_size" class="input-label">
+                                Tamaño del Motor (L)
+                            </label>
+                            <input 
+                                type="number" 
+                                id="engine_size" 
+                                name="engine_size" 
+                                class="input-field"
+                                placeholder="Ejemplo: 2.0 litros" 
+                                required 
+                                step="0.1" 
+                                min="0.1"
+                            >
+                            <span class="input-icon">🔧</span>
+                        </div>
+                    </div>
                 </div>
-            {% else %}
-                <div class="success-message">
-                    🎯 Resultado del Análisis: {{ prediction }}
-                </div>
+
+                <button type="submit" class="submit-button" id="submitBtn">
+                    Realizar Análisis
+                </button>
+            </form>
+
+            <!-- Mostrar resultados -->
+            {% if prediction %}
+                {% if prediction is string and "Error" in prediction %}
+                    <div class="result-error">
+                        ⚠️ {{ prediction }}
+                    </div>
+                {% else %}
+                    <div class="result-success">
+                        ✅ <strong>Resultado del Análisis:</strong> {{ prediction }} g/km de CO₂
+                    </div>
+                {% endif %}
             {% endif %}
-        {% endif %}
+        </div>
     </div>
+
+    <script>
+        // Validación en tiempo real
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('vehicleForm');
+            const inputs = form.querySelectorAll('input[required]');
+            const submitBtn = document.getElementById('submitBtn');
+
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                    checkFormValidity();
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+            });
+
+            function validateInput(input) {
+                const value = parseFloat(input.value);
+                
+                if (input.value === '' || value <= 0) {
+                    input.classList.remove('valid');
+                    input.classList.add('invalid');
+                } else {
+                    input.classList.remove('invalid');
+                    input.classList.add('valid');
+                }
+            }
+
+            function checkFormValidity() {
+                const allValid = Array.from(inputs).every(input => {
+                    return input.value !== '' && parseFloat(input.value) > 0;
+                });
+
+                submitBtn.disabled = !allValid;
+            }
+
+            // Loading state
+            form.addEventListener('submit', function() {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Analizando...';
+            });
+        });
+    </script>
 </body>
 </html>
